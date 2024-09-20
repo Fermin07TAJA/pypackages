@@ -1,0 +1,8 @@
+LICENSE.txt
+README.md
+setup.py
+fgmkr/__init__.py
+fgmkr.egg-info/PKG-INFO
+fgmkr.egg-info/SOURCES.txt
+fgmkr.egg-info/dependency_links.txt
+fgmkr.egg-info/top_level.txt
