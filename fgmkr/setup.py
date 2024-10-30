@@ -1,7 +1,7 @@
 import setuptools
 setuptools.setup(
  name='fgmkr',
- version='0.3.0',
+ version='0.3.8',
  author="Chickenfysh",
  author_email="iamchicken_3401@outlook.com",
  description="Custom Figure Auto Formatter",

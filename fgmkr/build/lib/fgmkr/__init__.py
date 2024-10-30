@@ -72,15 +72,13 @@ def fgmk(n,x,y,xlabel,ylabel, titlestr, figtext = None, glabel = None, grid = No
     if glabel is not None:
         plt.legend()
 
-# Double Input
-def fgmk2(n, x0, y0, xlabel, ylabel, t, *args, splots=1, lst='-', c='tab:blue', basefmt=" ", grid=1, dim=None, fig=None,
+# Multiple Input
+def fgmk2(n, x0, y0, xlabel, ylabel, t, *args, splots=1, lst='-', c='tab:blue', l=" ", basefmt=" ", grid=1, dim=(10,6), fig=None, fig_offset=0,
           mark_values=None, mark_labels=None, ptype="plot", conf_intervals=None, average=False, bell_curve=False, xmax=None,
+          pltshow=1, pltlegend=1,
           **kwargs):
     # Figure Setup
-    if dim is not None:
-        fig, axs = plt.subplots(splots, 1, figsize=dim)
-    else:
-        fig, axs = plt.subplots(splots, 1, figsize=(8, 8))
+    fig_setup, axs = plt.subplots(splots, 1, figsize=dim)
 
     # If only one subplot, axs -> list
     if splots == 1:
@@ -97,9 +95,10 @@ def fgmk2(n, x0, y0, xlabel, ylabel, t, *args, splots=1, lst='-', c='tab:blue', 
     # Graph Handler Dataset 0
     lst_first = kwargs.get('lst1', lst)
     c_first = kwargs.get('c1', c)
+    l_first = kwargs.get('l1', l)
 
     if ptype == "stem":
-        axs[0].stem(x0, y0, basefmt=basefmt, linefmt=lst_first, markerfmt=c_first)
+        axs[0].stem(x0, y0, basefmt=basefmt, linefmt=lst_first, markerfmt=c_first, label=l_first)
     elif ptype == "hist":
         axs[0].hist(x0, bins=y0, color=c_first)
         if conf_intervals is not None:
@@ -113,7 +112,7 @@ def fgmk2(n, x0, y0, xlabel, ylabel, t, *args, splots=1, lst='-', c='tab:blue', 
         if xmax is not None:
             axs[0].set_xlim(right=xmax)
     else:
-        axs[0].plot(x0, y0, linestyle=lst_first, color=c_first)
+        axs[0].plot(x0, y0, linestyle=lst_first, color=c_first, label=l_first)
 
     # Main Labels, Dataset 0
     axs[0].set_title(t)
@@ -167,37 +166,15 @@ def fgmk2(n, x0, y0, xlabel, ylabel, t, *args, splots=1, lst='-', c='tab:blue', 
 
     # Figure Name Handler
     if fig is not None:
-        plt.text(0.5, -0.1 * (splots + 0.15), r'$\bf{Figure\ }$' + str(n) + r': ' + str(fig), transform=plt.gca().transAxes,
+        plt.text(0.5, -0.1 * (splots*1.15 + fig_offset), r'$\bf{Figure\ }$' + str(n) + r': ' + str(fig), transform=plt.gca().transAxes,
                  horizontalalignment='center', verticalalignment='center', fontsize=10)
 
     plt.tight_layout()
-    plt.show()
-# def fgmk2(n, x0, y0, xlabel, ylabel, t,
-#           l=None, lst='-', c='tab:blue',
-#           x=None, y=None, l1=None, lst1='-', c1='tab:orange',
-#           fig=None, grid=1, dim=None):
-#     # Figure Setup
-#     if dim is not None:
-#         plt.figure(n, figsize=dim)
-#     else:
-#         plt.figure(n)
-#     plt.title(t)
-#     if fig is not None:
-#         plt.text(0.5, -0.18, r'$\bf{Figure\ }$' + str(n) + r': ' + str(fig), transform=plt.gca().transAxes,
-#                  horizontalalignment='center', verticalalignment='center', fontsize=10)
+    if pltshow == 1:
+        plt.show()
+    if pltlegend == 1:
+        plt.legend()
 
-#     # Data Visualization
-#     plt.plot(x0, y0, label=l, linestyle=lst, color=c)  # Set 0
-#     if x is not None and y is not None:  # Set 1
-#         plt.plot(x, y, label=l1, linestyle=lst1, color=c1)
-#     plt.xlabel(xlabel)
-#     plt.ylabel(ylabel)
-
-#     # Figure Cleanup
-#     if grid:
-#         plt.grid(which='both')
-#     if l is not None or l1 is not None:
-#         plt.legend()
 
 # Histogram
 def hgmk2(n, data, xlabel, ylabel, t, l=None, lst='-', c='tab:blue', fig=None, grid=1, dim=None,
