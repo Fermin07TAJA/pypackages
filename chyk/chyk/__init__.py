@@ -22,7 +22,7 @@ from sympy.solvers import solve
 from sympy import re, im
 from tabulate import tabulate
 import pandas as pd
-from fgmkr import toSheet, fgmk2, hgmk2, fgmk_help
+from fgmkr import *
 
 # Separates imaginary and real components
 def ri(imag):

@@ -1,7 +1,7 @@
 import setuptools
 setuptools.setup(
  name='chyk',
- version='0.2.0.6',
+ version='0.2.0.7',
  author="Chickenfysh",
  author_email="iamchicken_3401@outlook.com",
  description="Custom Package Loader",
