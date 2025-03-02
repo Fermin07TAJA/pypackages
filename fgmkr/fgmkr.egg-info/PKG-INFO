@@ -1,6 +1,6 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.2
 Name: fgmkr
-Version: 0.4.0
+Version: 0.4.21
 Summary: Custom Figure Auto Formatter
 Author: Chickenfysh
 Author-email: iamchicken_3401@outlook.com
@@ -9,6 +9,12 @@ Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
 Description-Content-Type: text/markdown
 License-File: LICENSE.txt
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: summary
 
 FIGURE GENERATOR
 

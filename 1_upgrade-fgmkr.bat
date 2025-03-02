@@ -1,3 +1,3 @@
-cd D:\Chickenfish\Code\OS Managers\Python Packages\pypackages\fgmkr
+cd U:\repos\pypackages\fgmkr
 twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
 pause

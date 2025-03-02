@@ -14,16 +14,20 @@ def fgmk3(figure_number, fig_title, config, *datasets):
     grid = config.get("grid", 1)
     ptype = config.get("ptype", "plot")
     figt = config.get("figt", "")
+    deltxt = config.get("deltxt", 0)
     dim = config.get("dim", (10, 6))
     splots = config.get("splots", 1)
+    sub = config.get("sub", '')
     lbl = config.get("lbl", [])
+    lst = config.get("lst", [])
+    mrk = config.get("mrk", [])
     lc = config.get("lc", [])
     while len(lc) < len(lbl):
         lc.append("#{:06x}".format(np.random.randint(0, 0xFFFFFF)))
     loc_ = config.get('loc', 'best')
 
     # General
-    bottom_text = r'$\bf{Figure\ }$' + str(figure_number) + r': ' + str(figt)
+    bottom_text = r'$\bf{Figure\ }$' + str(figure_number) + str(sub) + r': ' + str(figt)
 
 
     # Display
@@ -34,14 +38,20 @@ def fgmk3(figure_number, fig_title, config, *datasets):
             if ptype == "stem":
                 plt.plot(x_data, y_data, basefmt=" ", linefmt='-', markerfmt='o',
                         label=lbl[i] if lbl else None,
+                        linestyle=lst[i] if lst else None,
+                        marker=mrk[i] if mrk else None,
                         color=lc[i] if lc else None)
             elif ptype == "hist":
                 plt.plot(x_data, bins=y_data,
                         label=lbl[i] if lbl else None,
+                        linestyle=lst[i] if lst else None,
+                        marker=mrk[i] if mrk else None,
                         color=lc[i] if lc else None)
             else:
                 plt.plot(x_data, y_data,
                         label=lbl[i] if lbl else None,
+                        linestyle=lst[i] if lst else None,
+                        marker=mrk[i] if mrk else None,
                         color=lc[i] if lc else None)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
@@ -50,7 +60,7 @@ def fgmk3(figure_number, fig_title, config, *datasets):
         plt.title(fig_title)
         plt.grid(grid)
         if figt:
-            plt.text(0.5, -0.1 * (splots), bottom_text,transform=plt.gca().transAxes, horizontalalignment='center', verticalalignment='center', fontsize=10)
+            plt.text(0.5, -0.1 * (splots) + deltxt, bottom_text,transform=plt.gca().transAxes, horizontalalignment='center', verticalalignment='center', fontsize=10)
         plt.tight_layout()
         if pltlegend ==1:
             plt.legend(loc=loc_)
@@ -67,14 +77,20 @@ def fgmk3(figure_number, fig_title, config, *datasets):
             if ptype == "stem":
                 ax.plot(x_data, y_data, basefmt=" ", linefmt='-', markerfmt='o',
                         label=lbl[i] if lbl else None,
+                        linestyle=lst[i] if lst else None,
+                        marker=mrk[i] if mrk else None,
                         color=lc[i] if lc else None)
             elif ptype == "hist":
                 ax.plot(x_data, bins=y_data,
                         label=lbl[i] if lbl else None,
+                        linestyle=lst[i] if lst else None,
+                        marker=mrk[i] if mrk else None,
                         color=lc[i] if lc else None)
             else:
                 ax.plot(x_data, y_data,
                         label=lbl[i] if lbl else None,
+                        linestyle=lst[i] if lst else None,
+                        marker=mrk[i] if mrk else None,
                         color=lc[i] if lc else None)
             ax.set_xlabel(xlabel)
             ax.set_ylabel(ylabel)
@@ -87,7 +103,7 @@ def fgmk3(figure_number, fig_title, config, *datasets):
                 ax.legend(loc=loc_)
 
         if figt:
-            plt.text(0.5, -0.1 * (splots), bottom_text,transform=plt.gca().transAxes, horizontalalignment='center', verticalalignment='center', fontsize=10)
+            plt.text(0.5, -0.1 * (splots) + deltxt, bottom_text,transform=plt.gca().transAxes, horizontalalignment='center', verticalalignment='center', fontsize=10)
         plt.tight_layout()
         if pltshow == 1:
             plt.show()
@@ -146,8 +162,11 @@ def fgmk_help():
     print("      x: x values for data sets")
     print("      y: y values for data sets")
     print("      lbl: Label for data sets")
+    print("      lst: Line Style for data sets")
+    print("      mrk: Line Marker for data sets")
     print("      lc: Color for data sets")
     print("      figt: Figure text")
+    print("      deltxt: Figure text offset")
     print("      grid: Enable grid (default: 1)")
     print("      splots: Number of subplots")
     print("      ptype: Type of Plot")

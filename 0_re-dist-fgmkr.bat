@@ -1,2 +1,2 @@
-cd D:\Chickenfish\Code\OS Managers\Python Packages\pypackages\fgmkr\
+cd U:\repos\pypackages\fgmkr\
 python setup.py bdist_wheel
